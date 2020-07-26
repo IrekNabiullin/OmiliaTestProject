@@ -33,7 +33,7 @@ public class Main {
         System.out.println("\nTesting - Send Https GET request");
         HttpsConnectGetURL connectionGet = new HttpsConnectGetURL();
         try {
-            connectionGet.sendHttpGETRequest(host, accessToken);
+//            connectionGet.sendHttpGETRequest(host, accessToken);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,7 +41,7 @@ public class Main {
         System.out.println("\nTesting - Send Https POST request");
         HttpsConnectPostURL connectionPost = new HttpsConnectPostURL();
         try {
-            //           connectionPost.sendPOST(host, gsonUser);
+//            connectionPost.sendPOST(host, gsonUser);
         } catch (Exception e) {
             e.printStackTrace();
         }
