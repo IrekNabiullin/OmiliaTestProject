@@ -3,54 +3,17 @@ package ru.cti.omiliatest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
-
 public class GsonConvertation {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    public static String convertUserToGson() {
-        /*
-        PostRequest postRequest = new PostRequest();
-        postRequest.setProperties();
-        String gsonPostRequest = GSON.toJson(postRequest);
-        System.out.println(gsonPostRequest);
+    public static String convertObjectToGson(Object object) {
+        String gsonPostRequest = GSON.toJson(object);
         return gsonPostRequest;
-         */
-        Properties properties = new Properties();
-        User user = new User();
-        PostRequest postRequest = new PostRequest();
-
-        try {
-            FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.properties");
-            properties.load(fileInputStream);
-        } catch (FileNotFoundException e) {
-            System.err.println("Error: Property file not found!");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-
-        getProperties(properties, user);
-        String gsonPostRequest = GSON.toJson(user);
-        System.out.println("gsonPostRequest: " + gsonPostRequest);
-        return gsonPostRequest;
-    }
-
-    static void getProperties(Properties properties, User user) {
-        user.setUser_id(properties.getProperty("user_id"));
-        user.setEmail(properties.getProperty("email"));
-        user.setFirst_name(properties.getProperty("first_name"));
-        user.setLast_name(properties.getProperty("last_name"));
-        user.setFullname(properties.getProperty("fullname"));
-        user.setPhone_number(properties.getProperty("phone_number"));
-        user.setUsername(properties.getProperty("username"));
     }
 
     public static void extractUserFromGson(String receivedGson) {
-        User userReceivedFromApi = GSON.fromJson(receivedGson, User.class);
+        ResponseToParse result = GSON.fromJson(receivedGson, ResponseToParse.class);
+        /*
         String user_id = userReceivedFromApi.getUser_id();
         String email = userReceivedFromApi.getEmail();
         String first_name = userReceivedFromApi.getFirst_name();
@@ -65,5 +28,6 @@ public class GsonConvertation {
         System.out.println("fullname: " + fullname);
         System.out.println("phone_number: " + phone_number);
         System.out.println("username: " + username);
+         */
     }
 }

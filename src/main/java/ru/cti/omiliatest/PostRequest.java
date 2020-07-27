@@ -1,31 +1,20 @@
 package ru.cti.omiliatest;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Properties;
 
 public class PostRequest {
     private String application_id;
     private String source;
-    FileInputStream fileInputStream = null;
-    Properties properties = new Properties();
-    User user = new User();
+    private User user = new User();
     Context context = new Context();
-    public void setProperties() {
-        try {
-            FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.properties");
-            properties.load(fileInputStream);
-            application_id = properties.getProperty("application_id");
-            source = properties.getProperty("source");
-            getProperties(properties, user);
-            context.setProperties();
-        } catch (FileNotFoundException e) {
-            System.err.println("Error: Property file not found!");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+
+    public void setProperties(Properties properties) {
+        application_id = properties.getProperty("application_id");
+        source = properties.getProperty("source");
+        getProperties(properties, user);
+        context.setProperties(properties);
     }
+
     static void getProperties(Properties properties, User user) {
         user.setUser_id(properties.getProperty("user_id"));
         user.setEmail(properties.getProperty("email"));

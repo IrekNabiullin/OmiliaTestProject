@@ -1,25 +1,25 @@
 package ru.cti.omiliatest;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class Context {
-    private String asr_info;
-    FileInputStream fileInputStream = null;
-    Properties properties = new Properties();
+//    HashMap<String, String> semantics = new HashMap<String, String>();
     Semantics semantics = new Semantics();
-    public void setProperties() {
-        try {
-            FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.properties");
-            properties.load(fileInputStream);
-            semantics.setProperties();
-            asr_info = properties.getProperty("asr_info");
-        } catch (FileNotFoundException e) {
-            System.err.println("Error: Property file not found!");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+    AsrInfo asr_info = new AsrInfo();
+
+    public void setProperties(Properties properties) {
+        semantics.setProperties(properties);
     }
+/*
+        properties.forEach((k, v) -> {semantics.put((String) k, (String) v);});
+
+    Properties p = new Properties();
+p.load(inputStream);
+    Map<String, String> map = new HashMap<>();
+p.forEach((k, v) -> {map.put((String) k, (String) v);});
+
+
+ */
 }
